@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Add User</title>
+        <h:outputStylesheet library="css" name="style.css"  /> 
+    </h:head>
+    <h:body>
+
+       
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputText id="custfnout" value="First Name: " />
+                <h:inputText id="custifnin" value="#{customerBean.customer.FIRST_NAME}" 
+                             rendered="true" validator="#{customerBean.validateFirstName}">
+                    <f:ajax event="blur" render="nameError"/>
+                </h:inputText>
+               
+                <h:outputText id="custlnout" value="Last Name: "/>
+                <h:inputText id="custlnin" value="#{customerBean.customer.LAST_NAME}" rendered="true"/>
+                <h:outputText id="custdbout" value="Date of Birth: "/>
+                <h:inputText id="custdbin" value="#{customerBean.customer.dateOfBirth}">
+                    <f:convertDateTime pattern="dd-mm-yyyy"/>
+                </h:inputText>
+                <h:outputText id="custadout" value="Address: "/>
+                <h:inputText id="custadin" value="#{customerBean.customer.ADDRESS}"/>
+            </h:panelGrid>
+             <h:message for="custifnin" id="nameError"  styleClass="error"/><br/>
+            <h:commandButton id="submit" action="#{customerBean.addCustomer}" value="Save"/>
+            <h:commandButton id="toindx" action="index" value="Back" immediate="true"/>
+            <h:commandButton id="cancel" value="Cancel" immediate="true" type="reset"/>
+        </h:form>
+
+
+    </h:body>
+</html>
+

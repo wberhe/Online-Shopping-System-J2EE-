@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+     <h:head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>Welcome to MyCompany.com!</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="prettyPhoto.css"/>
+        <h:outputStylesheet library="css" name="price-range.css"/>
+        <h:outputStylesheet library="css" name="animate.css"/>
+        <h:outputStylesheet library="css" name="main.css"/>
+        <h:outputStylesheet library="css" name="responsive.css"/>
+        <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+    </h:head><!--/head-->
+    <body>
+        <header id="header"><!--header-->
+            <ui:insert name="heading">
+                <ui:include src="/sections/mycomp/header.xhtml"/>
+            </ui:insert>
+        </header><!--/header-->	
+        <section>
+            <div class="container">
+                <div class="row">
+                    <ui:insert name="sidebarLeft">
+                        <ui:include src="/sections/mycmop/sidebarLeft.xhtml"/>
+                    </ui:insert>
+                    <ui:insert name="content"/>
+                </div>
+            </div>
+        </section>	
+        <footer id="footer"><!--Footer-->		
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <p class="pull-left">Copyright MyCompany.com. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>		
+        </footer><!--/Footer-->  
+        <h:outputScript library="js" name="jquery.js"/>
+        <h:outputScript library="js" name="bootstrap.min.js"/>
+        <h:outputScript library="js" name="jquery.scrollUp.min.js"/>
+        <h:outputScript library="js" name="price-range.js"/>
+        <h:outputScript library="js" name="jquery.prettyPhoto.js"/>
+        <h:outputScript library="js" name="main.js"/>
+    </body>
+</html>

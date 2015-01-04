@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+      <h:outputStylesheet library="css" name="style.css"  />
+    </h:head>
+    <h:body>
+         <ui:composition template="/templates/masterLayout.xhtml">
+            <ui:define name="heading">
+                <ui:include src="/sections/mycomp/header.xhtml"/>
+            </ui:define>
+            <ui:define name="sidebarLeft">
+                <ui:include src="/sections/mycomp/sidebarLeft.xhtml"/>
+            </ui:define>
+            <ui:define name="content">
+        <h:form>
+            
+            <h3>Thank you for doing business with us</h3>
+            <h5>Please Check your email for the confirmation receipt.</h5> 
+            <h5>We will deliver your products within 3 days.</h5>
+            <h5>If you want to print your invoice please click <h:commandButton value="here" action="#{invoiceMB.generateInvoicePDF(purchaseOrderMB.purchaseOrder.id)}"/></h5>
+            <h5>Have a good day !!</h5>
+        </h:form>
+                 </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

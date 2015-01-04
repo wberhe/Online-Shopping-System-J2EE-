@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+    </h:head>
+    <body>
+        <ui:composition template="/templates/masterLayout.xhtml">
+            <ui:define name="heading">
+                <ui:include src="/sections/mycomp/indexHeaderTemplate.xhtml"/>
+            </ui:define>
+            <ui:define name="sidebarLeft">
+                <ui:include src="/sections/mycomp/sidebarLeft.xhtml"/>
+            </ui:define>
+            <ui:define name="content">
+                <h:form>    
+                    <div class="product-list-message">
+                        #{productBean.products.size()} product(s) available.
+                    </div>
+                    <div class="category-tab"><!--category-tab-->
+                        <div class="tab-content">
+                            <div class="tab-pane fade active in" >
+                                <ui:repeat value="#{productBean.products}" var="product">
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <h:commandLink action="#{productBean.viewProductDetail(product)}">
+                                                    <img src="#{product.imageURL}" alt="" />
+                                                    <h2>#{product.price}</h2>
+                                                    <p>
+                                                        <h:outputText value="${product.name}"/>
+                                                    </p>
+                                                    </h:commandLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ui:repeat>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputStylesheet library="css" name="style.css"  />
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/masterLayout.xhtml">
+            <ui:define name="heading">
+                <ui:include src="/sections/mycomp/header.xhtml"/>
+            </ui:define>
+            <ui:define name="sidebarLeft">
+            </ui:define>
+            <ui:define name="content">
+
+                <h:form>
+
+                    <h2>Shopping Cart</h2>
+
+                    <section id="cart_items">
+
+                        <div class="container">
+                            <div class="table-responsive cart_info">
+                                <h:dataTable headerClass="cart_menu" styleClass="table table-condensed" value="#{purchaseOrderMB.shoppingCart.shoppingCartItems}" var="item">
+
+                                    <h:column>
+                                        <f:facet name="header">Item</f:facet>
+                                        <h:graphicImage value="#{item.product.imageURL}" alt="Product_Image"/>
+                                        
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Price</f:facet>
+                                            #{item.product.price}                                
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Quantity</f:facet>
+                                        <h:inputText value="#{item.quantity}" style="width: 60px;" label="Quantity" validatorMessage="Quantity must be a number and greater than 0" converterMessage="Only positive integer values are allowed for quantity">
+                                    <f:validateLongRange minimum="1" maximum="10000"/></h:inputText>
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Total</f:facet>
+                                        #{item.price}
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Action</f:facet>
+                                        <h:commandLink value="Remove" action="#{purchaseOrderMB.removeProduct(item)}"></h:commandLink>
+                                        /
+                                        <h:commandLink value="Update" action="#{purchaseOrderMB.updateProduct(item)}"></h:commandLink>
+                                    </h:column>
+
+
+                                </h:dataTable>
+                            </div>
+                            <br/><br/><br/>
+                        </div>
+                          <div class="col-sm-6">
+                            <div class="total_area">
+                                <ul>
+                                    <li>Cart Sub Total <span>$ #{shoppingCartMB.shoppingCart.totalPrice}</span></li>
+                                    <li>Shipping Cost <span>Free</span></li>
+                                    <li>Total <span>$ #{shoppingCartMB.shoppingCart.totalPrice}</span></li>
+                                </ul>
+                                <h:commandButton class="btn btn-default check_out" value="Proceed to Checkout" action="#{purchaseOrderMB.checkout()}"/>
+                            </div>
+                        </div>
+                        <br/><br/><br/>
+                    </section>
+                    
+                </h:form>
+                
+
+
+
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

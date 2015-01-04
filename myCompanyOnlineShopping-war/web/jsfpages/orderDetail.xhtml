@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+      <h:outputStylesheet library="css" name="style.css"  />
+    </h:head>
+    <h:body>
+         <ui:composition template="/templates/masterLayout.xhtml">
+            <ui:define name="heading">
+                <ui:include src="/sections/mycomp/header.xhtml"/>
+            </ui:define>
+            <ui:define name="sidebarLeft">
+                <ui:include src="/sections/mycomp/sidebarLeft.xhtml"/>
+            </ui:define>
+            <ui:define name="content">
+        <h:form>
+            
+            <h2>Order Detail</h2>
+            
+            
+            <h3>Order Information</h3>
+            <h:panelGrid columns="2">
+                
+                Order Id
+                <h:outputText value="#{purchaseOrderMB.purchaseOrder.id}"/>
+
+                Customer Name
+                <h:outputText value="#{purchaseOrderMB.purchaseOrder.user.firstName} #{purchaseOrderMB.purchaseOrder.user.lastName}"/>
+
+            </h:panelGrid>
+            
+            <h:panelGrid columns="2">
+                
+                <h:dataTable value="#{purchaseOrderMB.purchaseOrder.shoppingCart.shoppingCartItems}" var="item">
+                
+            
+            
+                        <h:column class="cart_product">
+                            <f:facet class="image" name="header">Item</f:facet>
+                                <h:graphicImage value="#{item.product.imageURL}" alt="Product_Image"/>
+    			</h:column>
+ 
+                        <h:column class="cart_description">
+    				<f:facet name="header"></f:facet>
+    				#{item.product.name}
+    			</h:column>
+ 
+                        <h:column class="cart_price">
+    				<f:facet name="header">Price</f:facet>
+                                #{item.product.price}                                
+    			</h:column>
+                
+    			<h:column class="cart_quantity">
+    				<f:facet name="header">Quantity</f:facet>
+                                #{item.quantity}
+    			</h:column>
+                
+                        <h:column class="cart_total">
+    				<f:facet name="header">Total</f:facet>
+                                #{item.price}
+    			</h:column>
+                
+            </h:dataTable>
+                
+            </h:panelGrid>
+            
+             <h3>Billing Address</h3>
+            <h:panelGrid columns="2">
+                
+                Street
+                <h:outputText value="#{purchaseOrderMB.purchaseOrder.billingAddress.street}"/>
+
+                City
+                <h:outputText value="#{purchaseOrderMB.purchaseOrder.billingAddress.city}"/>
+
+                State
+                <h:outputText value="#{purchaseOrderMB.purchaseOrder.billingAddress.state}"/>
+                
+                Country
+                <h:outputText value="#{purchaseOrderMB.purchaseOrder.billingAddress.country}"/>
+                
+                Zip
+                <h:outputText value="#{purchaseOrderMB.purchaseOrder.billingAddress.zip}"/>
+
+            </h:panelGrid>
+             
+             <h3>Shipping Address</h3>
+            <h:panelGrid columns="2">
+                
+                Street
+                <h:outputText value="#{purchaseOrderMB.purchaseOrder.shippingAddress.street}"/>
+
+                City
+                <h:outputText value="#{purchaseOrderMB.purchaseOrder.shippingAddress.city}"/>
+
+                State
+                <h:outputText value="#{purchaseOrderMB.purchaseOrder.shippingAddress.state}"/>
+                
+                Country
+                <h:outputText value="#{purchaseOrderMB.purchaseOrder.shippingAddress.country}"/>
+                
+                Zip
+                <h:outputText value="#{purchaseOrderMB.purchaseOrder.shippingAddress.zip}"/>
+
+            </h:panelGrid>
+             
+             <h3>Customer Card Information</h3>
+            <h:panelGrid columns="2">
+                
+                Card holder Name
+                <h:outputText value="#{purchaseOrderMB.purchaseOrder.cardInformation.cardholderName}"/>
+
+                Card Number
+                <h:outputText value="#############{purchaseOrderMB.purchaseOrder.cardInformation.cardNumber}">
+                </h:outputText>
+
+                Expiry Date
+                <h:outputText value="#{purchaseOrderMB.purchaseOrder.cardInformation.expiryDate}"/>
+
+            </h:panelGrid>
+             
+             <h:commandButton value="Confirm Order" action="confirm"/>
+            
+        </h:form>
+         </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>IGNORED</title>
+    </h:head>
+    <body>    
+        <ui:composition> 
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Category</h2>
+                    <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+                        <h:form>
+                            <c:set var="catid" value="0"/>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h:form>
+                                        <h4 class="panel-title"><h:commandButton class="category-link" value="All categories" action="#{productBean.searchCategory(0)}"></h:commandButton></h4>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </h:form>
+                        <ui:repeat value="${categoryMB.allCategories}" var="category">
+                            <h:form>
+                                <c:set var="catid" value="#{category.id}"/>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h:form>
+                                            <h4 class="panel-title"><h:commandButton class="category-link" value="#{category.categoryName}" action="#{productBean.searchCategory(catid)}"></h:commandButton></h4>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </ui:repeat>
+                    </div>
+                </div><!--/category-products-->					
+            </div>
+        </ui:composition>
+    </body>
+</html> 

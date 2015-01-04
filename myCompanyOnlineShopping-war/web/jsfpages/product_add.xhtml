@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:event listener="#{userBean.isVendorUser}" type="preRenderView" />
+
+    <h:head>
+
+    </h:head>
+    <body>
+        <ui:composition template="/templates/masterLayout.xhtml">
+            <ui:define name="heading">
+                <ui:include src="/sections/mycomp/header.xhtml"/>
+            </ui:define>
+            <ui:define name="sidebarLeft">
+                <ui:include src="/sections/mycomp/sidebarLeft.xhtml"/>
+            </ui:define>
+            <ui:define name="content">
+                <h:form>
+
+                    <h:panelGrid columns="2">
+                        <h:outputText id="catnameout" value="Category "/>
+                        <h:selectOneMenu id ="selctedcat" value="#{productBean.categoryName}">
+                            <f:selectItems value="#{categoryMB.allCategories}" var="c"
+                                           itemLabel="#{c.categoryName}" itemValue="#{c.categoryName}" />
+                            <f:ajax execute="selctedcat" render="" event="change" />
+                        </h:selectOneMenu>
+
+                        <h:outputText id="prodnameout" value="Product: "/>
+                        <h:inputText id="prodnamein" value="#{productBean.product.name}"/>
+                        <h:outputText id="prodpriceout" value="Price: "/>
+                        <h:inputText id="prodpricein" value="#{productBean.product.price}"/>
+                        <h:outputText id="produrlout" value="URL: "/>
+                        <h:inputText id="produrlin" value="#{productBean.product.imageURL}"/>
+                        <h:outputText id="proddescout" value="Description: "/>
+                        <h:inputText id="proddescin" maxlength="128" value="#{productBean.product.description}"/>
+                        <h:outputText id="prodqtyout" value="Qty available: "/>
+                        <h:inputText id="prodqtyin" value="#{productBean.product.quantity}"/>
+                    </h:panelGrid>
+                    <h:commandButton id="submit" action="#{productBean.addProduct()}" value="Add product"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

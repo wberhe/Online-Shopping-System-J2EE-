@@ -1,0 +1,111 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+      <h:outputStylesheet library="css" name="style.css"  />
+    </h:head>
+    <h:body>
+         <ui:composition template="/templates/masterLayout.xhtml">
+            <ui:define name="heading">
+                <ui:include src="/sections/mycomp/header.xhtml"/>
+            </ui:define>
+            <ui:define name="sidebarLeft">
+                <ui:include src="/sections/mycomp/sidebarLeft.xhtml"/>
+            </ui:define>
+            <ui:define name="content">
+        <h:form>
+            
+            
+            
+            
+            
+           
+                
+                <table style="width: 100%">
+                    <tr>
+                        <td style="width: 50%">
+                            
+             Billing Address
+            <h:panelGrid columns="3">
+               
+          
+            Street
+            <h:inputText id="street" value="#{purchaseOrderMB.billingAddress.street}"/>
+            <h:message for="street"/>
+            
+            City
+            <h:inputText id="city" value="#{purchaseOrderMB.billingAddress.city}"/>
+            <h:message for="city"/>
+            
+            State
+            <h:inputText id="state" value="#{purchaseOrderMB.billingAddress.state}" maxlength="30"/>
+            <h:message for="state"/>
+            
+            Country
+            <h:selectOneMenu id="country" value="#{purchaseOrderMB.billingAddress.country}">
+                <f:selectItem itemValue="US" itemLabel="United States"/>
+                <f:selectItem itemValue="CA" itemLabel="Canada"/>
+                <f:selectItem itemValue="MX" itemLabel="Mexico"/>
+            </h:selectOneMenu>
+            <h:message for="country"/>
+            
+            Zip
+            <h:inputText id="zip" value="#{purchaseOrderMB.billingAddress.zip}" maxlength="5" converterMessage="Zip code must be number only">
+                <f:convertNumber/>
+            </h:inputText>
+            <h:message for="zip"/>
+            
+            </h:panelGrid>
+            
+                            
+                        </td>
+                        
+                        
+                        
+                        <td style="width: 50%">
+                             
+             Shipping Address
+            <h:panelGrid columns="3">
+              
+           
+            Street
+            <h:inputText id="street1" value="#{purchaseOrderMB.shippingAddress.street}"/>
+            <h:message for="street1"/>
+            
+            City
+            <h:inputText id="city1" value="#{purchaseOrderMB.shippingAddress.city}"/>
+            <h:message for="city1"/>
+            
+            State
+            <h:inputText id="state1" value="#{purchaseOrderMB.shippingAddress.state}" maxlength="30"/>
+            <h:message for="state1"/>
+            
+            Country
+            <h:selectOneMenu id="country1" value="#{purchaseOrderMB.shippingAddress.country}">
+                <f:selectItem itemValue="US" itemLabel="United States"/>
+                <f:selectItem itemValue="CA" itemLabel="Canada"/>
+                <f:selectItem itemValue="MX" itemLabel="Mexico"/>
+            </h:selectOneMenu>
+            <h:message for="country1"/>
+            
+            Zip
+            <h:inputText id="zip1" value="#{purchaseOrderMB.shippingAddress.zip}" maxlength="5" converterMessage="Zip code must be number only">
+                <f:convertNumber/>
+            </h:inputText>
+            <h:message for="zip1"/>
+            
+            </h:panelGrid>
+            
+                            
+                        </td>
+                    </tr>
+                </table>
+
+            <h:commandButton value=" Next " action="#{purchaseOrderMB.saveAddress()}"/>
+            
+        </h:form>
+         </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

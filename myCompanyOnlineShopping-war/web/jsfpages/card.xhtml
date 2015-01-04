@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+      <h:outputStylesheet library="css" name="style.css"  />
+    </h:head>
+    <h:body>
+         <ui:composition template="/templates/masterLayout.xhtml">
+            <ui:define name="heading">
+                <ui:include src="/sections/mycomp/header.xhtml"/>
+            </ui:define>
+            <ui:define name="sidebarLeft">
+                <ui:include src="/sections/mycomp/sidebarLeft.xhtml"/>
+            </ui:define>
+            <ui:define name="content">
+        <h:form>
+            
+            <h3>Card Information</h3>
+            
+            <h:panelGrid columns="3">
+            
+            Card holder Name
+            <h:inputText id="holderName" value="#{purchaseOrderMB.cardInfo.cardholderName}"/>
+            <h:message for="holderName"/>
+            
+            Card Number
+            <h:inputText id="cardNumber" value="#{purchaseOrderMB.cardInfo.cardNumber}" maxlength="16" label="Credit Card" validatorMessage="Length of the Credit Card must be 16 digits." converterMessage="Only positive integer values are allowed for Credit Card number.">
+                <f:convertNumber integerOnly="true" pattern="################"/>
+               <f:validateLength maximum="16" minimum="16"/>
+               <f:validateRequired/>
+            </h:inputText>
+            <h:message for="cardNumber" style="color:red;"/>
+            
+            Expiry Date
+            <h:inputText id="popup" value="#{purchaseOrderMB.cardInfo.expiryDate}" maxlength="10" label="Expiry Date" converterMessage="Date should be in MM/dd/yyyy format">
+                <f:convertDateTime pattern="MM/dd/yyyy"/>
+            </h:inputText>
+            <h:message for="popup" style="color:red;"/>
+            
+            Security Code
+            <h:inputSecret id="secuCode" value="#{purchaseOrderMB.cardInfo.securityCode}" maxlength="3" label="Security Code" validatorMessage="Length of the Security code must be 3">
+                <f:validateLength maximum="3" minimum="3"/>
+            </h:inputSecret>
+            <h:message for="secuCode" style="color:red;"/>
+            
+            </h:panelGrid>
+            
+            <h:commandButton value=" Next " action="#{purchaseOrderMB.saveCardInformation()}"/>
+            
+        </h:form>
+             </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

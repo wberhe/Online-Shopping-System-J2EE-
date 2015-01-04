@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+    </h:head>
+    <body>
+        <ui:composition template="/templates/masterLayout.xhtml">
+            <ui:define name="heading">
+                <ui:include src="/sections/mycomp/indexHeaderTemplate.xhtml"/>
+            </ui:define>
+            <ui:define name="sidebarLeft">
+                <ui:include src="/sections/mycomp/sidebarLeft.xhtml"/>
+            </ui:define>
+            <ui:define name="content">
+                <h:form>
+                    <h:dataTable id="productlist" value="#{productBean.products}" var="product" border="1">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id"></h:outputText>
+                        </f:facet>
+                        <h:outputText value="#{product.id}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Name"></h:outputText>
+                        </f:facet>
+                        <h:outputText value="#{product.name}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Price"></h:outputText>
+                        </f:facet>
+                        <h:outputText value="#{product.price}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Quantity"></h:outputText>
+                        </f:facet>
+                        <h:outputText value="#{product.quantity}"></h:outputText>
+                    </h:column>
+                </h:dataTable>
+                <h:commandButton value="Add Product" action="#{productBean.addProductPage()}"></h:commandButton>
+                <br/>
+            </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
