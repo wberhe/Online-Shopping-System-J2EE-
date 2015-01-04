@@ -15,7 +15,7 @@ import javax.persistence.Id;
 /**
  * This class is for Credit Card and contains Credit Card features.
  * 
- * @author james
+ * @author weldu
  * version 1.0.0
  */
 @Entity

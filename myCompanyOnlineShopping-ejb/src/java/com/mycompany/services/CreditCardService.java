@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 /**
  * This service class is responsible for persisting credit card info.
  * 
- * @author TalakB
+ * @author weldu
  * @version 1.0.0
  */
 @Stateless

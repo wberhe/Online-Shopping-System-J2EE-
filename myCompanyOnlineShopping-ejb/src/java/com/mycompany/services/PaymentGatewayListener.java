@@ -14,7 +14,7 @@ import javax.interceptor.InvocationContext;
 /**
  *This class is for payment gateway listener
  * 
- * @author Va Y.
+ * @author weldu.
  * version 1.0.0
  */
 @Stateless
